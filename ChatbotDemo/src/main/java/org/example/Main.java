@@ -22,13 +22,14 @@ import org.example.LightModel;
 import org.example.LightsPlugin;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        String key = System.getenv("OPEN_AI_KEY");
-        KeyCredential openAIClientCredentials = new KeyCredential(key);
+        String apiKey = Optional.ofNullable(System.getenv("OPEN_AI_KEY")).orElse("");
+        KeyCredential openAIClientCredentials = new KeyCredential(apiKey);
         String modelId = "gpt-3.5-turbo-1106";
         // Create the client
         OpenAIAsyncClient client = new OpenAIClientBuilder()
